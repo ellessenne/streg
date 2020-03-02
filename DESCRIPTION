@@ -1,8 +1,8 @@
 Type: Package
-Package: sherlocked
+Package: streg
 Version: 0.0.0.9000
-Title: Stata Tools to R
-Description: Porting Stata tools to R. Needs a better description...
+Title: Parametric Survival Models
+Description: Parametric survival models.
 Authors@R: 
     c(person(given = "Alessandro",
              family = "Gasparini",
@@ -10,8 +10,8 @@ Authors@R:
              email = "alessandro.gasparini@ki.se",
              comment = c(ORCID = "0000-0002-8319-7624")))
 Maintainer: Alessandro Gasparini <alessandro.gasparini@ki.se>
-URL: https://github.com/ellessenne/sherlocked
-BugReports: https://github.com/ellessenne/sherlocked/issues
+URL: https://github.com/ellessenne/streg
+BugReports: https://github.com/ellessenne/streg/issues
 License: GPL (>= 3)
 Depends: R (>= 2.10)
 Roxygen: list(markdown = TRUE)
