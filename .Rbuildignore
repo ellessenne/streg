@@ -2,3 +2,4 @@
 ^\.Rproj\.user$
 ^data-raw$
 ^testing\.R$
+^README\.Rmd$
