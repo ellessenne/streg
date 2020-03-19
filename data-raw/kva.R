@@ -4,6 +4,7 @@ library(usethis)
 
 ## Read data
 kva <- haven::read_dta(file = "http://www.stata-press.com/data/r16/kva.dta")
+kva <- as.data.frame(kva)
 
 ## Add column with event indicator (all are events)
 kva$event <- 1

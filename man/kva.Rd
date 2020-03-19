@@ -22,4 +22,7 @@ Generator Experiment
 \examples{
 data("kva", package = "streg")
 }
+\references{
+http://www.stata-press.com/data/r16/kva.dta
+}
 \keyword{datasets}

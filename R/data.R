@@ -4,6 +4,7 @@
 #' * `event` Event indicator variable;
 #' * `load` Overload (in KVA);
 #' * `bearings` Binary variable for _Has new bearings?_.
+#' @references http://www.stata-press.com/data/r16/kva.dta
 #' @examples
 #' data("kva", package = "streg")
 #' @export
