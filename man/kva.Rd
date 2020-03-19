@@ -17,7 +17,7 @@ A data frame with 12 rows and 4 variables:
 kva
 }
 \description{
-Generator Experiment
+Generator experiment data, imported from Stata 16.
 }
 \examples{
 data("kva", package = "streg")

@@ -17,7 +17,7 @@ A data frame with 48 rows and 4 variables:
 cancer
 }
 \description{
-Patient Survival in Drug Trial
+Patient survival in drug trial data, imported from Stata 16.
 }
 \examples{
 data("cancer", package = "streg")
