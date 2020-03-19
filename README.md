@@ -5,9 +5,13 @@
 
 <!-- badges: start -->
 
+[![Travis build
+status](https://travis-ci.org/ellessenne/streg.svg?branch=master)](https://travis-ci.org/ellessenne/streg)
+[![AppVeyor build
+status](https://ci.appveyor.com/api/projects/status/github/ellessenne/streg?branch=master&svg=true)](https://ci.appveyor.com/project/ellessenne/streg)
+[![Codecov test
+coverage](https://codecov.io/gh/ellessenne/streg/branch/master/graph/badge.svg)](https://codecov.io/gh/ellessenne/streg?branch=master)
 <!-- badges: end -->
-
-The goal of streg is to …
 
 ## Installation
 

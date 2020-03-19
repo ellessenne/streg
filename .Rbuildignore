@@ -3,3 +3,6 @@
 ^data-raw$
 ^testing\.R$
 ^README\.Rmd$
+^\.travis\.yml$
+^appveyor\.yml$
+^codecov\.yml$
