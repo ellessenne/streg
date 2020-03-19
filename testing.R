@@ -1,5 +1,5 @@
 ### Testing
 devtools::load_all()
-data("cancer", package = "streg")
+data("kva", package = "streg")
 
-str(streg(Surv(studytime, died) ~ age + drug, data = cancer, distribution = "weibull"))
+summary(streg(Surv(failtime, event) ~ load + bearings, data = kva, distribution = "weibull"))

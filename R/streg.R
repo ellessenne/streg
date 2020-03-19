@@ -32,6 +32,7 @@ streg <- function(formula, data, distribution = "exp", method = "L-BFGS-B", x = 
   out$n <- nrow(.data)
   out$nevent <- sum(S[, 2])
   out$time.at.risk <- sum(S[, 1])
+  out$distribution <- distribution
   out$convergence <- model.fit$convergence
   out$formula <- formula
   if (x) out$x <- data
@@ -41,22 +42,19 @@ streg <- function(formula, data, distribution = "exp", method = "L-BFGS-B", x = 
   return(out)
 }
 
-#' @export
-coef.streg <- function(object, ...) object$coef
-
-#' @export
-vcov.streg <- function(object, ...) object$vcov
-
-#' @export
-logLik.streg <- function(object, ...) object$loglik
-
+#' @title Print \code{streg} Fits
+#' @description Print the coefficients from a \code{streg} fit.
+#'
+#' @param x An object of class \code{streg}.
+#' @param digits The number of significant digits to use when printing.
+#' @param ... Not used.
+#'
 #' @export
 print.streg <- function(x, digits = max(3L, getOption("digits") - 3L), ...) {
-  if (length(coef(x))) {
+  cat(tools::toTitleCase(x$distribution), "regression -- log-relative hazard form\n\n")
+  if (length(stats::coef(x))) {
     cat("Coefficients:\n")
-    print.default(format(coef(x), digits = digits),
-      print.gap = 2L, quote = FALSE
-    )
+    print.default(format(stats::coef(x), digits = digits), print.gap = 2L, quote = FALSE)
   } else {
     cat("No coefficients\n")
   }

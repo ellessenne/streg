@@ -5,7 +5,7 @@
 \alias{streg}
 \title{Parametric Survival Analysis}
 \description{
-Survival analysis using parametric models.
+Survival analysis with parametric models.
 }
 \author{
 Alessandro Gasparini (alessandro.gasparini@ki.se)

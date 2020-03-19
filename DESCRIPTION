@@ -1,7 +1,7 @@
 Package: streg
 Version: 0.0.0.9000
 Title: Parametric Survival Analysis
-Description: Survival analysis using parametric models.
+Description: Survival analysis with parametric models.
 Authors@R: 
     c(person(given = "Alessandro",
              family = "Gasparini",
@@ -13,10 +13,10 @@ URL: https://github.com/ellessenne/streg
 BugReports: https://github.com/ellessenne/streg/issues
 License: GPL (>= 3)
 Depends: 
-  R (>= 2.10)
+  R (>= 2.10),
+  survival
 Imports:
   numDeriv,
-  survival,
   stats
 Suggests:
   covr,
