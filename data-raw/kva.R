@@ -15,5 +15,8 @@ for (var in colnames(kva)) {
   attr(kva[[deparse(as.name(var))]], "format.stata") <- NULL
 }
 
+## Re-order columns
+kva <- kva[, c("failtime", "event", "load", "bearings")]
+
 ## Save file to be used in the package
 usethis::use_data(kva, overwrite = TRUE)
