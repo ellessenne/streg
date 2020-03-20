@@ -8,6 +8,10 @@
 \method{logLik}{streg}(object, ...)
 
 \method{logLik}{summary.streg}(object, ...)
+
+\method{logLik}{streg}(object, ...)
+
+\method{logLik}{summary.streg}(object, ...)
 }
 \arguments{
 \item{object}{An object of class \code{streg} or \code{summary.streg}.}
@@ -15,5 +19,7 @@
 \item{...}{Not used.}
 }
 \description{
+Extract log-likelihood of a \code{streg} model.
+
 Extract log-likelihood of a \code{streg} model.
 }

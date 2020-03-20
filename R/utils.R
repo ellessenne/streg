@@ -1,6 +1,6 @@
 #' @title Extract Model Coefficients
-#' @description \code{coef} extracts model coefficients from a \code{streg} model fit. \code{coefficients} is an alias for it.
-#' @param object An object of class \code{streg} or \code{summary.streg}.
+#' @description `coef` extracts model coefficients from a `streg` model fit. `coefficients` is an alias for it.
+#' @param object An object of class `streg` or `summary.streg`.
 #' @param ... Not used.
 #' @export
 coef.streg <- function(object, ...) object$coef
@@ -9,9 +9,9 @@ coef.streg <- function(object, ...) object$coef
 #' @export
 coef.summary.streg <- function(object, ...) coef.streg(object, ...)
 
-#' @title Calculate Variance-Covariance Matrix for a \code{streg} Model Object
-#' @description Returns the variance-covariance matrix of all estimated parameters of a fitted \code{streg} model.
-#' @param object An object of class \code{streg} or \code{summary.streg}.
+#' @title Calculate Variance-Covariance Matrix for a `streg` Model Object
+#' @description Returns the variance-covariance matrix of all estimated parameters of a fitted `streg` model.
+#' @param object An object of class `streg` or `summary.streg`.
 #' @param ... Not used.
 #' @export
 vcov.streg <- function(object, ...) object$vcov
@@ -21,8 +21,19 @@ vcov.streg <- function(object, ...) object$vcov
 vcov.summary.streg <- function(object, ...) vcov.streg(object, ...)
 
 #' @title Extract Log-Likelihood
-#' @description Extract log-likelihood of a \code{streg} model.
-#' @param object An object of class \code{streg} or \code{summary.streg}.
+#' @description Extract log-likelihood of a `streg` model.
+#' @param object An object of class `streg` or `summary.streg`.
+#' @param ... Not used.
+#' @export
+logLik.streg <- function(object, ...) object$loglik
+
+#' @rdname logLik.streg
+#' @export
+logLik.summary.streg <- function(object, ...) logLik.streg(object, ...)
+
+#' @title Extract Log-Likelihood
+#' @description Extract log-likelihood of a `streg` model.
+#' @param object An object of class `streg` or `summary.streg`.
 #' @param ... Not used.
 #' @export
 logLik.streg <- function(object, ...) object$loglik
