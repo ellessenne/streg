@@ -1,0 +1,7 @@
+destination: docs
+authors:
+  Alessandro Gasparini:
+    href: https://www.ellessenne.xyz
+template:
+  params:
+    bootswatch: cosmo
