@@ -11,7 +11,12 @@ status](https://travis-ci.org/ellessenne/streg.svg?branch=master)](https://travi
 status](https://ci.appveyor.com/api/projects/status/github/ellessenne/streg?branch=master&svg=true)](https://ci.appveyor.com/project/ellessenne/streg)
 [![Codecov test
 coverage](https://codecov.io/gh/ellessenne/streg/branch/master/graph/badge.svg)](https://codecov.io/gh/ellessenne/streg?branch=master)
+![Lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)
 <!-- badges: end -->
+
+> This package is in early development, and not ready for daily use.
+> However, if you have any early feedback please do get in touch\!
 
 ## Installation
 
