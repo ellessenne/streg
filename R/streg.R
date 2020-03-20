@@ -1,7 +1,7 @@
 #' @export
 streg <- function(formula, data, distribution = "exp", method = "L-BFGS-B", x = FALSE, y = FALSE, use.numDeriv = FALSE, optim.control = list()) {
   # Match distribution
-  distribution <- match.arg(distribution, choices = c("exponential", "weibull", "gompertz"))
+  distribution <- match.arg(distribution, choices = c("exponential", "weibull", "gompertz", "invweibull"))
   # Process Surv component
   S <- eval(expr = formula[[2]], envir = data)
   start <- S[, which(grepl("^time|^start", colnames(S))), drop = FALSE]
@@ -22,6 +22,10 @@ streg <- function(formula, data, distribution = "exp", method = "L-BFGS-B", x = 
     init <- rep(0, ncol(.data) + 1)
     names(init) <- c(colnames(.data), "ln_gamma")
     ll <- gompertz_ll
+  } else if (distribution == "invweibull") {
+    init <- rep(0, ncol(.data) + 1)
+    names(init) <- c(colnames(.data), "ln_p")
+    ll <- invweibull_ll
   }
   # Fit
   model.fit <- stats::optim(par = init, fn = ll, data = .data, time = start, status = status, method = method, hessian = !use.numDeriv, control = optim.control)
@@ -57,7 +61,12 @@ streg <- function(formula, data, distribution = "exp", method = "L-BFGS-B", x = 
 #'
 #' @export
 print.streg <- function(x, digits = max(3L, getOption("digits") - 3L), ...) {
-  cat(tools::toTitleCase(x$distribution), "regression -- log-relative hazard form\n\n")
+  if (x$distribution == "invweibull") {
+    ddd <- "Inverse Weibull"
+  } else {
+    ddd <- tools::toTitleCase(x$distribution)
+  }
+  cat(ddd, "regression -- log-relative hazard form\n\n")
   if (length(stats::coef(x))) {
     cat("Coefficients:\n")
     print.default(format(stats::coef(x), digits = digits), print.gap = 2L, quote = FALSE)

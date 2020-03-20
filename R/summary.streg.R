@@ -25,7 +25,12 @@ summary.streg <- function(object, conf.int = 0.95, ...) {
 #' @rdname summary.streg
 #' @export
 print.summary.streg <- function(x, digits = max(3, getOption("digits") - 3), ...) {
-  cat(tools::toTitleCase(x$distribution), "regression -- log-relative hazard form\n\n")
+  if (x$distribution == "invweibull") {
+    ddd <- "Inverse Weibull"
+  } else {
+    ddd <- tools::toTitleCase(x$distribution)
+  }
+  cat(ddd, "regression -- log-relative hazard form\n\n")
   cat("No. of subject =", x$n, "\n")
   cat("No. of failures =", x$nevent, "\n")
   cat("Time at risk =", x$time.at.risk, "\n\n")
