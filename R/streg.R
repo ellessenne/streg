@@ -1,5 +1,5 @@
 #' @export
-streg <- function(formula, data, distribution = "exp", method = "L-BFGS-B", x = FALSE, y = FALSE, use.numDeriv = FALSE, optim.control = list()) {
+streg <- function(formula, data, distribution = "exponential", method = "L-BFGS-B", x = FALSE, y = FALSE, use.numDeriv = FALSE, optim.control = list()) {
   # Match distribution
   distribution <- match.arg(distribution, choices = c("exponential", "weibull", "gompertz", "invweibull", "lognormal"))
   # Process Surv component
