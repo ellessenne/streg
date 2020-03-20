@@ -1,7 +1,7 @@
 #' @export
 streg <- function(formula, data, distribution = "exp", method = "L-BFGS-B", x = FALSE, y = FALSE, use.numDeriv = FALSE, optim.control = list()) {
   # Match distribution
-  distribution <- match.arg(distribution, choices = c("exponential", "weibull", "gompertz", "invweibull"))
+  distribution <- match.arg(distribution, choices = c("exponential", "weibull", "gompertz", "invweibull", "lognormal"))
   # Process Surv component
   S <- eval(expr = formula[[2]], envir = data)
   start <- S[, which(grepl("^time|^start", colnames(S))), drop = FALSE]
@@ -26,6 +26,10 @@ streg <- function(formula, data, distribution = "exp", method = "L-BFGS-B", x = 
     init <- rep(0, ncol(.data) + 1)
     names(init) <- c(colnames(.data), "ln_p")
     ll <- invweibull_ll
+  } else if (distribution == "lognormal") {
+    init <- rep(0, ncol(.data) + 1)
+    names(init) <- c(colnames(.data), "ln_sigma")
+    ll <- lognormal_ll
   }
   # Fit
   model.fit <- stats::optim(par = init, fn = ll, data = .data, time = start, status = status, method = method, hessian = !use.numDeriv, control = optim.control)
@@ -63,6 +67,8 @@ streg <- function(formula, data, distribution = "exp", method = "L-BFGS-B", x = 
 print.streg <- function(x, digits = max(3L, getOption("digits") - 3L), ...) {
   if (x$distribution == "invweibull") {
     ddd <- "Inverse Weibull"
+  } else if (x$distribution == "lognormal") {
+    ddd <- "log-Normal"
   } else {
     ddd <- tools::toTitleCase(x$distribution)
   }

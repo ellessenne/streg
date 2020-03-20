@@ -27,6 +27,8 @@ summary.streg <- function(object, conf.int = 0.95, ...) {
 print.summary.streg <- function(x, digits = max(3, getOption("digits") - 3), ...) {
   if (x$distribution == "invweibull") {
     ddd <- "Inverse Weibull"
+  } else if (x$distribution == "lognormal") {
+    ddd <- "log-Normal"
   } else {
     ddd <- tools::toTitleCase(x$distribution)
   }
