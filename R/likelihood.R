@@ -38,8 +38,8 @@ lognormal_ll <- function(pars, data, time, status) {
   beta <- pars[-length(pars)]
   logsigma <- pars[length(pars)]
   argof <- (log(time) - exp(data %*% beta)) / exp(logsigma)
-  logh <- dnorm(x = argof, log = TRUE) - logsigma - log(time) - pnorm(q = argof, lower.tail = FALSE, log.p = TRUE)
-  logS <- pnorm(q = argof, lower.tail = FALSE, log.p = TRUE)
+  logh <- stats::dnorm(x = argof, log = TRUE) - logsigma - log(time) - stats::pnorm(q = argof, lower.tail = FALSE, log.p = TRUE)
+  logS <- stats::pnorm(q = argof, lower.tail = FALSE, log.p = TRUE)
   ll <- status * logh + logS
   ll <- sum(ll)
   return(-ll)
