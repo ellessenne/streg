@@ -1,16 +1,25 @@
 #' @keywords internal
-weibull_ll <- function(pars, data, S) {
-  beta <- pars[-length(pars)]
-  logp <- pars[length(pars)]
-  ll <- S[, 2] * (logp + data %*% beta + (exp(logp) - 1) * log(S[, 1])) - exp(data %*% beta) * (S[, 1]^(exp(logp)))
+exponential_ll <- function(pars, data, time, status) {
+  beta <- pars
+  ll <- status * (data %*% beta + log(time)) - exp(data %*% beta) * time
   ll <- sum(ll)
   return(-ll)
 }
 
 #' @keywords internal
-exponential_ll <- function(pars, data, S) {
-  beta <- pars
-  ll <- S[, 2] * (data %*% beta + log(S[, 1])) - exp(data %*% beta) * S[, 1]
+weibull_ll <- function(pars, data, time, status) {
+  beta <- pars[-length(pars)]
+  logp <- pars[length(pars)]
+  ll <- status * (logp + data %*% beta + (exp(logp) - 1) * log(time)) - exp(data %*% beta) * (time^(exp(logp)))
+  ll <- sum(ll)
+  return(-ll)
+}
+
+#' @keywords internal
+gompertz_ll <- function(pars, data, time, status) {
+  beta <- pars[-length(pars)]
+  loggamma <- pars[length(pars)]
+  ll <- status * (data %*% beta + exp(loggamma) * time) - exp(data %*% beta) / exp(loggamma) * (exp(exp(loggamma) * time) - 1)
   ll <- sum(ll)
   return(-ll)
 }

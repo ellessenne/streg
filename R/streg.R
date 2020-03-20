@@ -1,10 +1,15 @@
 #' @export
-streg <- function(formula, data, distribution = "exp", method = "L-BFGS-B", x = FALSE, use.numDeriv = FALSE, optim.control = list()) {
-  distribution <- match.arg(distribution, choices = c("exponential", "weibull"))
+streg <- function(formula, data, distribution = "exp", method = "L-BFGS-B", x = FALSE, y = FALSE, use.numDeriv = FALSE, optim.control = list()) {
+  # Match distribution
+  distribution <- match.arg(distribution, choices = c("exponential", "weibull", "gompertz"))
+  # Process Surv component
   S <- eval(expr = formula[[2]], envir = data)
+  start <- S[, which(grepl("^time|^start", colnames(S))), drop = FALSE]
+  status <- S[, which(grepl("^status", colnames(S))), drop = FALSE]
+  # Create model matrix
   formula[[2]] <- NULL
   .data <- stats::model.matrix(formula, data = data)
-
+  # Pick correct likelihood function
   if (distribution == "exponential") {
     init <- rep(0, ncol(.data))
     names(init) <- colnames(.data)
@@ -13,22 +18,23 @@ streg <- function(formula, data, distribution = "exp", method = "L-BFGS-B", x = 
     init <- rep(0, ncol(.data) + 1)
     names(init) <- c(colnames(.data), "ln_p")
     ll <- weibull_ll
+  } else if (distribution == "gompertz") {
+    init <- rep(0, ncol(.data) + 1)
+    names(init) <- c(colnames(.data), "ln_gamma")
+    ll <- gompertz_ll
   }
-
   # Fit
-  model.fit <- stats::optim(par = init, fn = ll, data = .data, S = S, method = method, hessian = !use.numDeriv, control = optim.control)
-
+  model.fit <- stats::optim(par = init, fn = ll, data = .data, time = start, status = status, method = method, hessian = !use.numDeriv, control = optim.control)
   # Hessian
   if (use.numDeriv) {
     model.fit$hessian <- numDeriv::hessian(func = ll, x = model.fit$par, data = .data, S = S)
   }
-
   # Create object to output
   out <- list()
   out$coefficients <- model.fit$par
   out$vcov <- solve(model.fit$hessian)
   # Add sum(log(t)) of uncensored observations to log-likelihood
-  out$loglik <- -model.fit$value + sum(log(S[S[, 2] == 1, 1]))
+  out$loglik <- -model.fit$value + sum(log(start[status == 1]))
   out$n <- nrow(.data)
   out$nevent <- sum(S[, 2])
   out$time.at.risk <- sum(S[, 1])
@@ -36,7 +42,7 @@ streg <- function(formula, data, distribution = "exp", method = "L-BFGS-B", x = 
   out$convergence <- model.fit$convergence
   out$formula <- formula
   if (x) out$x <- data
-
+  if (y) out$y <- S
   # Return an object of class streg
   class(out) <- "streg"
   return(out)
