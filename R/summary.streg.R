@@ -16,8 +16,8 @@ summary.streg <- function(object, conf.int = 0.95, ...) {
   btab[, 5] <- btab[, 1] - stats::qnorm(1 - (1 - conf.int) / 2) * btab[, 2]
   btab[, 6] <- btab[, 1] + stats::qnorm(1 - (1 - conf.int) / 2) * btab[, 2]
   object$coefftable <- btab
-  class(object) <- c("summary.streg", class(object))
-  return(object)
+  #
+  structure(object, class = c("summary.streg", class(object)))
 }
 
 #' @param x An object of class \code{summary.streg}

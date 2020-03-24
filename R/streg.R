@@ -52,8 +52,7 @@ streg <- function(formula, data, distribution = "exponential", method = "L-BFGS-
   if (x) out$x <- data
   if (y) out$y <- S
   # Return an object of class streg
-  class(out) <- "streg"
-  return(out)
+  structure(out, class = "streg")
 }
 
 #' @title Print \code{streg} Fits
