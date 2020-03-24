@@ -42,7 +42,7 @@ streg <- function(formula, data, distribution = "exponential", method = "L-BFGS-
   out$coefficients <- model.fit$par
   out$vcov <- solve(model.fit$hessian)
   # Add sum(log(t)) of uncensored observations to log-likelihood
-  out$loglik <- -model.fit$value + sum(log(start[status == 1]))
+  out$loglik <- -model.fit$value
   out$n <- nrow(.data)
   out$nevent <- sum(S[, 2])
   out$time.at.risk <- sum(S[, 1])
