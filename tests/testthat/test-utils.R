@@ -86,3 +86,18 @@ testthat::test_that("S3 method: BIC", {
   testthat::expect_type(object = BIC(f2), type = "double")
   testthat::expect_type(object = BIC(summary(f2)), type = "double")
 })
+
+testthat::test_that("S3 method: is", {
+  testthat::expect_true(object = is.streg(f1))
+  testthat::expect_true(object = is.streg(f2))
+  testthat::expect_true(object = is.summary.streg(summary(f1)))
+  testthat::expect_true(object = is.summary.streg(summary(f2)))
+
+  testthat::expect_false(object = is.streg(cancer))
+  testthat::expect_false(object = is.streg(42))
+  testthat::expect_false(object = is.streg("DON'T PANIC"))
+
+  testthat::expect_false(object = is.summary.streg(cancer))
+  testthat::expect_false(object = is.summary.streg(42))
+  testthat::expect_false(object = is.summary.streg("DON'T PANIC"))
+})
