@@ -13,3 +13,11 @@ testthat::test_that("Dataset: cancer", {
   testthat::expect_equal(object = nrow(cancer), expected = 48)
   testthat::expect_equal(object = ncol(cancer), expected = 4)
 })
+
+testthat::test_that("Dataset: hip", {
+  data("hip", package = "streg")
+
+  testthat::expect_s3_class(object = hip, class = "data.frame")
+  testthat::expect_equal(object = nrow(hip), expected = 206)
+  testthat::expect_equal(object = ncol(hip), expected = 8)
+})

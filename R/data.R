@@ -21,3 +21,19 @@
 #' @examples
 #' data("cancer", package = "streg")
 "cancer"
+
+#' @title Hip Fracture Study
+#' @description Hip fracture study data, imported from Stata 16.
+#' @format A data frame with 206 rows and 8 variables:
+#' * `id` Patient ID;
+#' * `time0` Begin of time interval;
+#' * `time1` End of time interval;
+#' * `fracture` Fracture event;
+#' * `protect` Wears device;
+#' * `age` Age at enrollment;
+#' * `calcium` Blood calcium level;
+#' * `male` 1 if male.
+#' @references http://www.stata-press.com/data/r16/hip3.dta
+#' @examples
+#' data("hip", package = "streg")
+"hip"
