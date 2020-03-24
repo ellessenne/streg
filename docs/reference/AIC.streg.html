@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • streg</title>
+<title>Akaike's Information Criterion — AIC.streg • streg</title>
 
 
 <!-- jquery -->
@@ -35,7 +35,9 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Akaike's Information Criterion — AIC.streg" />
+<meta property="og:description" content="Extract Akaike's Information Criterion (AIC) or Bayesian Information Criterion (BIC) from fitted models of class streg." />
+<meta name="twitter:card" content="summary" />
 
 
 
@@ -64,7 +66,7 @@
   </head>
 
   <body>
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -106,102 +108,54 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Akaike's Information Criterion</h1>
+    
+    <div class="hidden name"><code>AIC.streg.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    <p>Extract Akaike's Information Criterion (AIC) or Bayesian Information Criterion (BIC) from fitted models of class <code>streg</code>.</p>
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='co'># S3 method for streg</span>
+<span class='fu'><a href='https://rdrr.io/r/stats/AIC.html'>AIC</a></span>(<span class='no'>object</span>, <span class='no'>...</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>)
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      <tr>
-        
-        <td>
-          <p><code><a href="AIC.streg.html">AIC(<i>&lt;streg&gt;</i>)</a></code> <code><a href="AIC.streg.html">AIC(<i>&lt;summary.streg&gt;</i>)</a></code> <code><a href="AIC.streg.html">BIC(<i>&lt;streg&gt;</i>)</a></code> <code><a href="AIC.streg.html">BIC(<i>&lt;summary.streg&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Akaike's Information Criterion</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="cancer.html">cancer</a></code> </p>
-        </td>
-        <td><p>Patient Survival in Drug Trial</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="coef.streg.html">coef(<i>&lt;streg&gt;</i>)</a></code> <code><a href="coef.streg.html">coef(<i>&lt;summary.streg&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Extract Model Coefficients</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="hip.html">hip</a></code> </p>
-        </td>
-        <td><p>Hip Fracture Study</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="kva.html">kva</a></code> </p>
-        </td>
-        <td><p>Generator Experiment</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="logLik.streg.html">logLik(<i>&lt;streg&gt;</i>)</a></code> <code><a href="logLik.streg.html">logLik(<i>&lt;summary.streg&gt;</i>)</a></code> <code><a href="logLik.streg.html">logLik(<i>&lt;streg&gt;</i>)</a></code> <code><a href="logLik.streg.html">logLik(<i>&lt;summary.streg&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Extract Log-Likelihood</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="plot.streg.html">plot(<i>&lt;streg&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Plot Survivor, Hazard, Cumulative Hazard, or Cumulative Incidence Function</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="print.streg.html">print(<i>&lt;streg&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Print <code>streg</code> Fits</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="streg.html">streg</a></code> </p>
-        </td>
-        <td><p>Parametric Survival Analysis</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="summary.streg.html">summary(<i>&lt;streg&gt;</i>)</a></code> <code><a href="summary.streg.html">print(<i>&lt;summary.streg&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Summarizing <code>streg</code> Fits</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="vcov.streg.html">vcov(<i>&lt;streg&gt;</i>)</a></code> <code><a href="vcov.streg.html">vcov(<i>&lt;summary.streg&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Calculate Variance-Covariance Matrix for a <code>streg</code> Model Object</p></td>
-      </tr>
-    </tbody>
+<span class='co'># S3 method for summary.streg</span>
+<span class='fu'><a href='https://rdrr.io/r/stats/AIC.html'>AIC</a></span>(<span class='no'>object</span>, <span class='no'>...</span>)
+
+<span class='co'># S3 method for streg</span>
+<span class='fu'><a href='https://rdrr.io/r/stats/AIC.html'>BIC</a></span>(<span class='no'>object</span>, <span class='no'>...</span>)
+
+<span class='co'># S3 method for summary.streg</span>
+<span class='fu'><a href='https://rdrr.io/r/stats/AIC.html'>BIC</a></span>(<span class='no'>object</span>, <span class='no'>...</span>)</pre>
+
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>object</th>
+      <td><p>An object of class <code>streg</code> or <code>summary.streg</code>.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Not used.</p></td>
+    </tr>
+    <tr>
+      <th>k</th>
+      <td><p>The penalty per parameter to be used; defaults to $k = 2$, corresponding to the classical AIC.</p></td>
+    </tr>
     </table>
-  </div>
 
+
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-all-functions">All functions</a></li>
+      <li><a href="#arguments">Arguments</a></li>
     </ul>
+
   </div>
 </div>
 
