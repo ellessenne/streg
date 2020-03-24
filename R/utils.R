@@ -3,7 +3,7 @@
 #' @param object An object of class `streg` or `summary.streg`.
 #' @param ... Not used.
 #' @export
-coef.streg <- function(object, ...) object$coef
+coef.streg <- function(object, ...) object$coefficients
 
 #' @rdname coef.streg
 #' @export
@@ -41,3 +41,11 @@ logLik.streg <- function(object, ...) object$loglik
 #' @rdname logLik.streg
 #' @export
 logLik.summary.streg <- function(object, ...) logLik.streg(object, ...)
+
+#' @title Akaike's Information Criterion
+#' @description Extract Akaike's Information Criterion (AIC) or Bayesian Information Criterion (BIC) from fitted models of class `streg`.
+#' @param object An object of class `streg` or `summary.streg`.
+#' @param ... Not used.
+#' @param k The penalty per parameter to be used; defaults to $k = 2$, corresponding to the classical AIC.
+#' @export
+AIC.streg <- function(object, ..., k = 2) -2 * object$loglik + k * length(stats::coef(object))
