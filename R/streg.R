@@ -1,5 +1,5 @@
 #' @export
-streg <- function(formula, data, distribution = "exponential", method = "L-BFGS-B", x = FALSE, y = FALSE, use.numDeriv = FALSE, optim.control = list()) {
+streg <- function(formula, data, distribution = "exponential", method = "L-BFGS-B", x = FALSE, y = FALSE, use.numDeriv = FALSE, init = NULL, optim.control = list()) {
   # Match distribution
   distribution <- match.arg(distribution, choices = c("exponential", "weibull", "gompertz", "invweibull", "lognormal"))
   # Process Surv component
@@ -11,23 +11,33 @@ streg <- function(formula, data, distribution = "exponential", method = "L-BFGS-
   .data <- stats::model.matrix(formula, data = data)
   # Pick correct likelihood function
   if (distribution == "exponential") {
-    init <- rep(0, ncol(.data))
+    if (is.null(init)) {
+      init <- rep(0, ncol(.data))
+    }
     names(init) <- colnames(.data)
     ll <- exponential_ll
   } else if (distribution == "weibull") {
-    init <- rep(0, ncol(.data) + 1)
+    if (is.null(init)) {
+      init <- rep(0, ncol(.data) + 1)
+    }
     names(init) <- c(colnames(.data), "ln_p")
     ll <- weibull_ll
   } else if (distribution == "gompertz") {
-    init <- rep(0, ncol(.data) + 1)
+    if (is.null(init)) {
+      init <- rep(0, ncol(.data) + 1)
+    }
     names(init) <- c(colnames(.data), "ln_gamma")
     ll <- gompertz_ll
   } else if (distribution == "invweibull") {
-    init <- rep(0, ncol(.data) + 1)
+    if (is.null(init)) {
+      init <- rep(0, ncol(.data) + 1)
+    }
     names(init) <- c(colnames(.data), "ln_p")
     ll <- invweibull_ll
   } else if (distribution == "lognormal") {
-    init <- rep(0, ncol(.data) + 1)
+    if (is.null(init)) {
+      init <- rep(0, ncol(.data) + 1)
+    }
     names(init) <- c(colnames(.data), "ln_sigma")
     ll <- lognormal_ll
   }
