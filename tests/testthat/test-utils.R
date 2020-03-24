@@ -59,3 +59,30 @@ testthat::test_that("S3 method: logLik", {
   testthat::expect_type(object = logLik(summary(f2)), type = "double")
 })
 
+testthat::test_that("S3 method: AIC", {
+  testthat::expect_equal(object = AIC(f1), expected = AIC(summary(f1)))
+  testthat::expect_length(object = AIC(f1), n = 1)
+  testthat::expect_length(object = AIC(summary(f1)), n = 1)
+  testthat::expect_type(object = AIC(f1), type = "double")
+  testthat::expect_type(object = AIC(summary(f1)), type = "double")
+
+  testthat::expect_equal(object = AIC(f2), expected = AIC(summary(f2)))
+  testthat::expect_length(object = AIC(f2), n = 1)
+  testthat::expect_length(object = AIC(summary(f2)), n = 1)
+  testthat::expect_type(object = AIC(f2), type = "double")
+  testthat::expect_type(object = AIC(summary(f2)), type = "double")
+})
+
+testthat::test_that("S3 method: BIC", {
+  testthat::expect_equal(object = BIC(f1), expected = BIC(summary(f1)))
+  testthat::expect_length(object = BIC(f1), n = 1)
+  testthat::expect_length(object = BIC(summary(f1)), n = 1)
+  testthat::expect_type(object = BIC(f1), type = "double")
+  testthat::expect_type(object = BIC(summary(f1)), type = "double")
+
+  testthat::expect_equal(object = BIC(f2), expected = BIC(summary(f2)))
+  testthat::expect_length(object = BIC(f2), n = 1)
+  testthat::expect_length(object = BIC(summary(f2)), n = 1)
+  testthat::expect_type(object = BIC(f2), type = "double")
+  testthat::expect_type(object = BIC(summary(f2)), type = "double")
+})

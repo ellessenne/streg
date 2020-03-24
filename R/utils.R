@@ -46,6 +46,19 @@ logLik.summary.streg <- function(object, ...) logLik.streg(object, ...)
 #' @description Extract Akaike's Information Criterion (AIC) or Bayesian Information Criterion (BIC) from fitted models of class `streg`.
 #' @param object An object of class `streg` or `summary.streg`.
 #' @param ... Not used.
+#' @importFrom stats AIC BIC
 #' @param k The penalty per parameter to be used; defaults to $k = 2$, corresponding to the classical AIC.
 #' @export
-AIC.streg <- function(object, ..., k = 2) -2 * object$loglik + k * length(stats::coef(object))
+AIC.streg <- function(object, ..., k = 2) -2 * stats::logLik(object) + k * length(stats::coef(object))
+
+#' @rdname AIC.streg
+#' @export
+AIC.summary.streg <- function(object, ...) AIC.streg(object, ...)
+
+#' @rdname AIC.streg
+#' @export
+BIC.streg <- function(object, ...) AIC.streg(object = object, ..., k = log(object$n))
+
+#' @rdname AIC.streg
+#' @export
+BIC.summary.streg <- function(object, ...) BIC.streg(object, ...)
