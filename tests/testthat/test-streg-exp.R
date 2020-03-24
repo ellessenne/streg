@@ -16,7 +16,6 @@ testthat::test_that("Compare coefficients with Stata", {
   testthat::expect_equivalent(object = coef(f2), expected = c(-1.323385, -.9763093), tolerance = 1e-5)
   testthat::expect_equivalent(object = coef(f3), expected = c(-7.321192, .074351), tolerance = 1e-2)
   testthat::expect_equivalent(object = coef(f4), expected = c(-5.629056, -1.014594, .078479), tolerance = 1e-2)
-  testthat::expect_equivalent(object = coef(f4), expected = c(-5.629056, -1.014594, .078479), tolerance = 1e-2)
 })
 
 testthat::test_that("Compare AIC with Stata", {
