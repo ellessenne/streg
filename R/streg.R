@@ -10,37 +10,24 @@ streg <- function(formula, data, distribution = "exponential", method = "L-BFGS-
   formula[[2]] <- NULL
   .data <- stats::model.matrix(formula, data = data)
   # Pick correct likelihood function
-  if (distribution == "exponential") {
-    if (is.null(init)) {
-      init <- rep(0, ncol(.data))
-    }
-    names(init) <- colnames(.data)
-    ll <- exponential_ll
-  } else if (distribution == "weibull") {
-    if (is.null(init)) {
-      init <- rep(0, ncol(.data) + 1)
-    }
-    names(init) <- c(colnames(.data), "ln_p")
-    ll <- weibull_ll
-  } else if (distribution == "gompertz") {
-    if (is.null(init)) {
-      init <- rep(0, ncol(.data) + 1)
-    }
-    names(init) <- c(colnames(.data), "ln_gamma")
-    ll <- gompertz_ll
-  } else if (distribution == "invweibull") {
-    if (is.null(init)) {
-      init <- rep(0, ncol(.data) + 1)
-    }
-    names(init) <- c(colnames(.data), "ln_p")
-    ll <- invweibull_ll
-  } else if (distribution == "lognormal") {
-    if (is.null(init)) {
-      init <- rep(0, ncol(.data) + 1)
-    }
-    names(init) <- c(colnames(.data), "ln_sigma")
-    ll <- lognormal_ll
+  ll <- switch(distribution,
+    "exponential" = exponential_ll,
+    "weibull" = weibull_ll,
+    "gompertz" = gompertz_ll,
+    "invweibull" = invweibull_ll,
+    "lognormal" = lognormal_ll
+  )
+  # Process starting values
+  if (is.null(init)) {
+    init <- rep(0, ncol(.data) + as.numeric(distribution != "exponential"))
   }
+  names(init) <- switch(distribution,
+    "exponential" = colnames(.data),
+    "weibull" = c(colnames(.data), "ln_p"),
+    "gompertz" = c(colnames(.data), "ln_gamma"),
+    "invweibull" = c(colnames(.data), "ln_p"),
+    "lognormal" = c(colnames(.data), "ln_sigma")
+  )
   # Fit
   model.fit <- stats::optim(par = init, fn = ll, data = .data, time = start, status = status, method = method, hessian = !use.numDeriv, control = optim.control)
   # Hessian
