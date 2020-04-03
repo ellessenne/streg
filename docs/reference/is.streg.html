@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Extract Model Coefficients — coef.streg • streg</title>
+<title>Parametric Survival Models — is.streg • streg</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Extract Model Coefficients — coef.streg" />
-<meta property="og:description" content="coef extracts model coefficients from a streg model fit. coefficients is an alias for it." />
+<meta property="og:title" content="Parametric Survival Models — is.streg" />
+<meta property="og:description" content="Reports whether x is an object of class streg or summary.streg." />
 
 
 
@@ -118,31 +118,25 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Extract Model Coefficients</h1>
+    <h1>Parametric Survival Models</h1>
     <small class="dont-index">Source: <a href='https://github.com/ellessenne/streg/blob/master/R/utils.R'><code>R/utils.R</code></a></small>
-    <div class="hidden name"><code>coef.streg.Rd</code></div>
+    <div class="hidden name"><code>is.streg.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p><code>coef</code> extracts model coefficients from a <code>streg</code> model fit. <code>coefficients</code> is an alias for it.</p>
+    <p>Reports whether <code>x</code> is an object of class <code>streg</code> or <code>summary.streg</code>.</p>
     </div>
 
-    <pre class="usage"><span class='co'># S3 method for streg</span>
-<span class='fu'><a href='https://rdrr.io/r/stats/coef.html'>coef</a></span>(<span class='no'>object</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>is.streg</span>(<span class='no'>x</span>)
 
-<span class='co'># S3 method for summary.streg</span>
-<span class='fu'><a href='https://rdrr.io/r/stats/coef.html'>coef</a></span>(<span class='no'>object</span>, <span class='no'>...</span>)</pre>
+<span class='fu'>is.summary.streg</span>(<span class='no'>x</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>object</th>
-      <td><p>An object of class <code>streg</code> or <code>summary.streg</code>.</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>Not used.</p></td>
+      <th>x</th>
+      <td><p>An object to test.</p></td>
     </tr>
     </table>
 
