@@ -7,8 +7,7 @@ streg <- function(formula, data, distribution = "exponential", method = "L-BFGS-
   start <- S[, which(grepl("^time|^start", colnames(S))), drop = FALSE]
   status <- S[, which(grepl("^status", colnames(S))), drop = FALSE]
   # Create model matrix
-  formula[[2]] <- NULL
-  .data <- stats::model.matrix(formula, data = data)
+  .data <- stats::model.matrix(formula[-2], data = data)
   # Pick correct likelihood function
   ll <- switch(distribution,
     "exponential" = exponential_ll,
@@ -19,7 +18,7 @@ streg <- function(formula, data, distribution = "exponential", method = "L-BFGS-
   )
   # Process starting values
   if (is.null(init)) {
-    init <- rep(0, ncol(.data) + as.numeric(distribution != "exponential"))
+    init <- rep(.Machine$double.eps, ncol(.data) + as.numeric(distribution != "exponential"))
   }
   names(init) <- switch(distribution,
     "exponential" = colnames(.data),
