@@ -9,3 +9,5 @@
 ^_pkgdown\.yml$
 ^docs$
 ^pkgdown$
+^data-raw/predict-stata\.dta$
+^data-raw/predict-stata\.do$
