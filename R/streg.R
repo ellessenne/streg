@@ -1,21 +1,13 @@
 #' @export
-streg <- function(formula, data, distribution = "exponential", method = "L-BFGS-B", x = FALSE, y = FALSE, use.numDeriv = FALSE, init = NULL, optim.control = list()) {
+streg <- function(formula, data, distribution = "exponential", x = FALSE, y = FALSE, init = NULL, optim.control = list()) {
   # Match distribution
-  distribution <- match.arg(distribution, choices = c("exponential", "weibull", "gompertz", "invweibull", "lognormal"))
+  distribution <- match.arg(distribution, choices = c("exponential", "weibull"))
   # Process Surv component
   S <- eval(expr = formula[[2]], envir = data)
   start <- S[, which(grepl("^time|^start", colnames(S))), drop = FALSE]
   status <- S[, which(grepl("^status", colnames(S))), drop = FALSE]
   # Create model matrix
   .data <- stats::model.matrix(formula[-2], data = data)
-  # Pick correct likelihood function
-  ll <- switch(distribution,
-    "exponential" = exponential_ll,
-    "weibull" = weibull_ll,
-    "gompertz" = gompertz_ll,
-    "invweibull" = invweibull_ll,
-    "lognormal" = lognormal_ll
-  )
   # Process starting values
   if (is.null(init)) {
     init <- rep(.Machine$double.eps, ncol(.data) + as.numeric(distribution != "exponential"))
@@ -27,12 +19,19 @@ streg <- function(formula, data, distribution = "exponential", method = "L-BFGS-
     "invweibull" = c(colnames(.data), "ln_p"),
     "lognormal" = c(colnames(.data), "ln_sigma")
   )
+  # Pick correct likelihood function
+  f <- switch(distribution,
+    "exponential" = TMB::MakeADFun(data = list(model = "ll_exp", data = .data, time = start, status = status), parameters = list(beta = init), silent = TRUE, DLL = "streg_TMBExports")
+  )
   # Fit
-  model.fit <- stats::optim(par = init, fn = ll, data = .data, time = start, status = status, method = method, hessian = !use.numDeriv, control = optim.control)
+  model.fit <- stats::optim(par = f$par, fn = f$fn, gr = f$gr, method = "L-BFGS-B", control = optim.control)
   # Hessian
-  if (use.numDeriv) {
-    model.fit$hessian <- numDeriv::hessian(func = ll, x = model.fit$par, data = .data, S = S)
-  }
+  model.fit$hessian <- f$he(x = model.fit$par)
+  # Fix names
+  names(model.fit$par) <- names(init)
+  colnames(model.fit$hessian) <- names(init)
+  rownames(model.fit$hessian) <- names(init)
+
   # Create object to output
   out <- list()
   out$coefficients <- model.fit$par

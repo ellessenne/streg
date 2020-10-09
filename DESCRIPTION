@@ -17,13 +17,16 @@ Depends:
   survival
 Imports:
   numDeriv,
-  stats
+  stats,
+  TMB (>= 1.7.18)
 Suggests:
   covr,
   knitr,
   testthat (>= 2.1.0)
+LinkingTo: 
+  TMB
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 Encoding: UTF-8
 LazyData: true
 ByteCompile: true
