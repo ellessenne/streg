@@ -1,5 +1,5 @@
 #' @export
-streg <- function(formula, data, distribution = "exponential", x = FALSE, y = FALSE, init = NULL, optim.control = list()) {
+streg <- function(formula, data, distribution = "exponential", x = FALSE, y = FALSE, init = NULL, control = list()) {
   # Match distribution
   distribution <- match.arg(distribution, choices = c("exponential", "weibull"))
   # Process Surv component
@@ -21,10 +21,11 @@ streg <- function(formula, data, distribution = "exponential", x = FALSE, y = FA
   )
   # Pick correct likelihood function
   f <- switch(distribution,
-    "exponential" = TMB::MakeADFun(data = list(model = "ll_exp", data = .data, time = start, status = status), parameters = list(beta = init), silent = TRUE, DLL = "streg_TMBExports")
+    "exponential" = TMB::MakeADFun(data = list(model = "ll_exp", data = .data, time = start, status = status), parameters = list(beta = init), silent = TRUE, DLL = "streg_TMBExports"),
+    "weibull" = TMB::MakeADFun(data = list(model = "ll_wei", data = .data, time = start, status = status), parameters = list(beta = init[-length(init)], logp = init[length(init)]), silent = TRUE, DLL = "streg_TMBExports")
   )
   # Fit
-  model.fit <- stats::optim(par = f$par, fn = f$fn, gr = f$gr, method = "L-BFGS-B", control = optim.control)
+  model.fit <- stats::nlminb(start = f$par, objective = f$fn, gradient = f$gr, hessian = f$he, control = control)
   # Hessian
   model.fit$hessian <- f$he(x = model.fit$par)
   # Fix names
@@ -37,12 +38,13 @@ streg <- function(formula, data, distribution = "exponential", x = FALSE, y = FA
   out$coefficients <- model.fit$par
   out$vcov <- solve(model.fit$hessian)
   # Add sum(log(t)) of uncensored observations to log-likelihood
-  out$loglik <- -model.fit$value
+  out$loglik <- -model.fit$objective
   out$n <- nrow(.data)
   out$nevent <- sum(S[, 2])
   out$time.at.risk <- sum(S[, 1])
   out$distribution <- distribution
   out$convergence <- model.fit$convergence
+  out$message <- model.fit$message
   out$formula <- formula
   if (x) out$x <- data
   if (y) out$y <- S

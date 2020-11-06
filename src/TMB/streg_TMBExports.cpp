@@ -3,12 +3,15 @@
 #define TMB_LIB_INIT R_init_streg_TMBExports
 #include <TMB.hpp>
 #include "ll_exp.hpp"
+#include "ll_wei.hpp"
 
 template<class Type>
 Type objective_function<Type>::operator() () {
   DATA_STRING(model);
   if(model == "ll_exp") {
     return ll_exp(this);
+  } else if(model == "ll_wei") {
+    return ll_wei(this);
   } else {
     error("Unknown model.");
   }
