@@ -1,7 +1,7 @@
 #' @export
 streg <- function(formula, data, distribution = "exponential", x = FALSE, y = FALSE, init = NULL, control = list()) {
   # Match distribution
-  distribution <- match.arg(distribution, choices = c("exponential", "weibull"))
+  distribution <- match.arg(distribution, choices = c("exponential", "weibull", "gompertz"))
   # Process Surv component
   S <- eval(expr = formula[[2]], envir = data)
   start <- S[, which(grepl("^time|^start", colnames(S))), drop = FALSE]
@@ -10,22 +10,22 @@ streg <- function(formula, data, distribution = "exponential", x = FALSE, y = FA
   .data <- stats::model.matrix(formula[-2], data = data)
   # Process starting values
   if (is.null(init)) {
-    init <- rep(.Machine$double.eps, ncol(.data) + as.numeric(distribution != "exponential"))
+    init <- rep(1, ncol(.data) + as.numeric(distribution != "exponential"))
+    init[seq(ncol(.data))] <- 0
   }
   names(init) <- switch(distribution,
     "exponential" = colnames(.data),
     "weibull" = c(colnames(.data), "ln_p"),
-    "gompertz" = c(colnames(.data), "ln_gamma"),
-    "invweibull" = c(colnames(.data), "ln_p"),
-    "lognormal" = c(colnames(.data), "ln_sigma")
+    "gompertz" = c(colnames(.data), "gamma"),
   )
   # Pick correct likelihood function
   f <- switch(distribution,
     "exponential" = TMB::MakeADFun(data = list(model = "ll_exp", data = .data, time = start, status = status), parameters = list(beta = init), silent = TRUE, DLL = "streg_TMBExports"),
-    "weibull" = TMB::MakeADFun(data = list(model = "ll_wei", data = .data, time = start, status = status), parameters = list(beta = init[-length(init)], logp = init[length(init)]), silent = TRUE, DLL = "streg_TMBExports")
+    "weibull" = TMB::MakeADFun(data = list(model = "ll_wei", data = .data, time = start, status = status), parameters = list(beta = init[-length(init)], logp = init[length(init)]), silent = TRUE, DLL = "streg_TMBExports"),
+    "gompertz" = TMB::MakeADFun(data = list(model = "ll_gom", data = .data, time = start, status = status), parameters = list(beta = init[-length(init)], gamma = init[length(init)]), silent = TRUE, DLL = "streg_TMBExports")
   )
   # Fit
-  model.fit <- stats::nlminb(start = f$par, objective = f$fn, gradient = f$gr, hessian = f$he, control = control)
+  model.fit <- stats::nlminb(start = f$par, objective = f$fn, gradient = f$gr, hessian = f$he)
   # Hessian
   model.fit$hessian <- f$he(x = model.fit$par)
   # Fix names
@@ -44,7 +44,6 @@ streg <- function(formula, data, distribution = "exponential", x = FALSE, y = FA
   out$time.at.risk <- sum(S[, 1])
   out$distribution <- distribution
   out$convergence <- model.fit$convergence
-  out$message <- model.fit$message
   out$formula <- formula
   if (x) out$x <- data
   if (y) out$y <- S
