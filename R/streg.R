@@ -1,5 +1,7 @@
 #' @export
 streg <- function(formula, data, distribution = "exponential", x = FALSE, y = FALSE, init = NULL, control = list()) {
+  # Extract call
+  cl <- match.call()
   # Match distribution
   distribution <- match.arg(distribution, choices = c("exponential", "weibull", "gompertz"))
   # Process Surv component
@@ -47,26 +49,7 @@ streg <- function(formula, data, distribution = "exponential", x = FALSE, y = FA
   out$formula <- formula
   if (x) out$x <- data
   if (y) out$y <- S
+  out$call <- cl
   # Return an object of class streg
   structure(out, class = "streg")
-}
-
-#' @title Print \code{streg} Fits
-#' @description Print the coefficients from a \code{streg} fit.
-#'
-#' @param x An object of class \code{streg}.
-#' @param digits The number of significant digits to use when printing.
-#' @param ... Not used.
-#'
-#' @export
-print.streg <- function(x, digits = max(3L, getOption("digits") - 3L), ...) {
-  cat(tools::toTitleCase(x$distribution), "regression -- log-relative hazard form\n\n")
-  if (length(stats::coef(x))) {
-    cat("Coefficients:\n")
-    print.default(format(stats::coef(x), digits = digits), print.gap = 2L, quote = FALSE)
-  } else {
-    cat("No coefficients\n")
-  }
-  cat("\n")
-  invisible(x)
 }
