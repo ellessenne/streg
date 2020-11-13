@@ -9,6 +9,8 @@ df1 <- merge(s1, covs)
 
 fit <- streg(Surv(eventtime, status) ~ trt + age, data = df1, distribution = "exp")
 
+asd <- summary(fit)
+asd
 
 coef(fit)
 coefficients(fit)
@@ -16,5 +18,5 @@ vcov(fit)
 logLik(fit)
 nobs(fit)
 update(fit, Surv(eventtime, status) ~ age + I(age^2))
-
+confint(fit, parm = "age")
 # see e.g.: methods(class = "lm")
