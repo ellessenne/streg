@@ -1,7 +1,8 @@
 Package: streg
 Version: 0.0.0.9000
-Title: Parametric Survival Analysis
-Description: Survival analysis with parametric models.
+Title: Parametric Proportional Hazards Survival Models
+Description: Survival analysis parametric proportional hazards survival models, including
+  the exponential, Weibull, and Gompertz model.
 Authors@R: 
     c(person(given = "Alessandro",
              family = "Gasparini",

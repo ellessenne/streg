@@ -6,11 +6,14 @@ N <- 1e3
 covs <- data.frame(id = seq(N), trt = stats::rbinom(N, 1L, 0.5), age = runif(N, 40, 60))
 s1 <- simsurv(lambdas = 0.1, betas = c(trt = -0.5, age = 0.01), x = covs, maxt = 5, dist = "exp")
 df1 <- merge(s1, covs)
-
 fit <- streg(Surv(eventtime, status) ~ trt + age, data = df1, distribution = "exp")
 
-asd <- summary(fit)
-asd
+data("kva")
+fit <- streg(Surv(eventtime, status) ~ trt + age, data = df1, distribution = "exp")
+
+
+fit2 <- streg(Surv(failtime, event) ~ load + bearings, data = kva, distribution = "weibull")
+summary(fit2)
 
 coef(fit)
 coefficients(fit)

@@ -23,6 +23,7 @@ print.summary.streg <- function(x, digits = max(3, getOption("digits") - 3), sig
   cat("N. of subjects \t=", x$n, "\n")
   cat("N. of failures \t=", x$n.events, "\n")
   cat("Time at risk \t=", x$time.at.risk, "\n\n")
+  cat("Log likelihood \t=", stats::logLik(x), "\n\n")
   stats::printCoefmat(x$coeftable, digits = digits, signif.stars = signif.stars, na.print = "NA", ...)
   cat("\n")
   invisible(x)
