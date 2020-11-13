@@ -14,3 +14,6 @@
 \description{
 Extract log-likelihood from a fitted \code{streg} model.
 }
+\seealso{
+\code{\link[stats:logLik]{stats::logLik()}}
+}

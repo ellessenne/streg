@@ -14,3 +14,8 @@
 \description{
 Extract model coefficients from a \code{streg} fit.
 }
+\seealso{
+\code{\link[stats:coef]{stats::coef()}}
+
+\code{\link[stats:coef]{stats::coefficients()}}
+}

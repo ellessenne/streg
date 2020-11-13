@@ -24,6 +24,9 @@ print.streg <- function(x, digits = max(3L, getOption("digits") - 3L), ...) {
 #' @param object An object of class \code{streg}.
 #' @param ... Not used.
 #'
+#' @seealso [stats::coef()]
+#' @seealso [stats::coefficients()]
+#'
 #' @export
 coef.streg <- function(object, ...) {
   object$coefficients
@@ -35,6 +38,7 @@ coef.streg <- function(object, ...) {
 #' @param object An object of class \code{streg}.
 #' @param ... Not used.
 #'
+#' @seealso [stats::vcov()]
 #' @export
 vcov.streg <- function(object, ...) {
   object$vcov
@@ -46,6 +50,9 @@ vcov.streg <- function(object, ...) {
 #' @param object An object of class \code{streg}.
 #' @param ... Not used.
 #'
+#' @seealso [stats::nobs()]
+#' @importFrom stats nobs
+#'
 #' @export
 nobs.streg <- function(object, ...) {
   object$n
@@ -56,6 +63,8 @@ nobs.streg <- function(object, ...) {
 #'
 #' @param object An object of class \code{streg}.
 #' @param ... Not used.
+#'
+#' @seealso [stats::logLik()]
 #'
 #' @export
 logLik.streg <- function(object, ...) {

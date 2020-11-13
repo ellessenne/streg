@@ -14,3 +14,6 @@
 \description{
 Extract the number of 'observations' from an \code{streg} model fit.
 }
+\seealso{
+\code{\link[stats:nobs]{stats::nobs()}}
+}

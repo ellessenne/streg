@@ -14,3 +14,6 @@
 \description{
 Returns the variance-covariance matrix of the main parameters of a fitted \code{streg} model.
 }
+\seealso{
+\code{\link[stats:vcov]{stats::vcov()}}
+}
