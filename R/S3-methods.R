@@ -22,7 +22,10 @@ print.streg <- function(x, digits = max(3L, getOption("digits") - 3L), ...) {
 #' @description Extract model coefficients from a \code{streg} fit.
 #'
 #' @param object An object of class \code{streg}.
+#' @param value Value of coefficients to replace.
 #' @param ... Not used.
+#' @importFrom stats coef
+#' @importFrom rstpm2 "coef<-"
 #'
 #' @seealso [stats::coef()]
 #' @seealso [stats::coefficients()]
@@ -32,11 +35,19 @@ coef.streg <- function(object, ...) {
   object$coefficients
 }
 
+#' @rdname coef.streg
+# This S3 method is needed to support rstpm2::predictnl
+"coef<-.streg" <- function(object, value) {
+  object$coefficients <- value
+  return(object)
+}
+
 #' @title Calculate Variance-Covariance Matrix for a Fitted Model Object
 #' @description Returns the variance-covariance matrix of the main parameters of a fitted \code{streg} model.
 #'
 #' @param object An object of class \code{streg}.
 #' @param ... Not used.
+#' @importFrom stats vcov
 #'
 #' @seealso [stats::vcov()]
 #' @export
@@ -63,6 +74,7 @@ nobs.streg <- function(object, ...) {
 #'
 #' @param object An object of class \code{streg}.
 #' @param ... Not used.
+#' @importFrom stats logLik
 #'
 #' @seealso [stats::logLik()]
 #'

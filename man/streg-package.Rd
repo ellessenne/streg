@@ -8,7 +8,8 @@
 \description{
 Survival analysis with parametric models.
 
-Survival analysis with parametric models.
+Survival analysis parametric proportional hazards survival models, including
+  the exponential, Weibull, and Gompertz model.
 }
 \seealso{
 Useful links:

@@ -5,11 +5,11 @@ streg <- function(formula, data, distribution = "exponential", x = FALSE, y = FA
   # Match distribution
   distribution <- match.arg(distribution, choices = c("exponential", "weibull", "gompertz"))
   # Process Surv component
-  S <- eval(expr = formula[[2]], envir = data)
+  S <- .process_streg_formula(formula = formula, data = data, which = "y")
   start <- S[, which(grepl("^time|^start", colnames(S))), drop = FALSE]
   status <- S[, which(grepl("^status", colnames(S))), drop = FALSE]
   # Create model matrix
-  X <- stats::model.matrix(formula[-2], data = data)
+  X <- .process_streg_formula(formula = formula, data = data, which = "x")
   # Process starting values
   if (is.null(init)) {
     # Fit the empty model here to improve starting values, if not provided with starting values
@@ -59,6 +59,7 @@ streg <- function(formula, data, distribution = "exponential", x = FALSE, y = FA
   out$distribution <- distribution
   out$convergence <- model.fit$convergence
   out$formula <- formula
+  out$time.range <- range(start)
   if (x) out$x <- data
   if (y) out$y <- S
   out$call <- cl

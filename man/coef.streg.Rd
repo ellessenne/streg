@@ -2,14 +2,19 @@
 % Please edit documentation in R/S3-methods.R
 \name{coef.streg}
 \alias{coef.streg}
+\alias{coef<-.streg}
 \title{Extract Model Coefficients}
 \usage{
 \method{coef}{streg}(object, ...)
+
+\method{coef}{streg}(object) <- value
 }
 \arguments{
 \item{object}{An object of class \code{streg}.}
 
 \item{...}{Not used.}
+
+\item{value}{Value of coefficients to replace.}
 }
 \description{
 Extract model coefficients from a \code{streg} fit.

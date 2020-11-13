@@ -17,14 +17,17 @@ Depends:
   R (>= 2.10),
   survival
 Imports:
-  numDeriv,
+  Rcpp,
+  rstpm2,
   stats,
   TMB (>= 1.7.18)
 Suggests:
   covr,
   knitr,
   testthat (>= 2.1.0)
-LinkingTo: 
+LinkingTo:
+  Rcpp,
+  RcppArmadillo,
   TMB
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
