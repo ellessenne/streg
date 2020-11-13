@@ -74,3 +74,16 @@ logLik.streg <- function(object, ...) {
   class(out) <- "logLik"
   return(out)
 }
+
+#' @title Parametric Survival Models
+#' @description Reports whether `x` is an object of class `streg` or `summary.streg`.
+#' @param x An object to test.
+#'
+#' @export
+is.streg <- function(x) {
+  inherits(x, "streg")
+}
+
+#' @rdname is.streg
+#' @export
+is.summary.streg <- function(x) inherits(x, "summary.streg")
