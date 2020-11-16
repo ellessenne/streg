@@ -4,6 +4,8 @@
 // [[Rcpp::export(.xb)]]
 arma::vec xb(arma::mat const &X, arma::vec const &par) {
   Rcpp::checkUserInterrupt();
-  arma::vec out = (X * par);
+  uint n = X.n_cols;
+  arma::vec beta = par.head(n);
+  arma::vec out = (X * beta);
   return(out);
 }
