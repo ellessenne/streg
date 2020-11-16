@@ -42,7 +42,11 @@ predict.streg <- function(object, newdata = NULL, type = "xb", se.fit = FALSE, .
           out <- .wei_surv(X = X, t = start, par = coef(object))
         }
       } else if (object$distribution == "gompertz") {
-
+        if (type == "hazard") {
+          out <- .gom_h(X = X, t = start, par = coef(object))
+        } else if (type == "surv") {
+          out <- .gom_surv(X = X, t = start, par = coef(object))
+        }
       }
     }
   }

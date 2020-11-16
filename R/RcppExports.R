@@ -9,6 +9,14 @@
     .Call(`_streg_exp_surv`, X, t, par)
 }
 
+.gom_h <- function(X, t, par) {
+    .Call(`_streg_gom_h`, X, t, par)
+}
+
+.gom_surv <- function(X, t, par) {
+    .Call(`_streg_gom_surv`, X, t, par)
+}
+
 .wei_h <- function(X, t, par) {
     .Call(`_streg_wei_h`, X, t, par)
 }

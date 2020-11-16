@@ -31,6 +31,32 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// gom_h
+arma::vec gom_h(arma::mat const& X, arma::vec const& t, arma::vec const& par);
+RcppExport SEXP _streg_gom_h(SEXP XSEXP, SEXP tSEXP, SEXP parSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::mat const& >::type X(XSEXP);
+    Rcpp::traits::input_parameter< arma::vec const& >::type t(tSEXP);
+    Rcpp::traits::input_parameter< arma::vec const& >::type par(parSEXP);
+    rcpp_result_gen = Rcpp::wrap(gom_h(X, t, par));
+    return rcpp_result_gen;
+END_RCPP
+}
+// gom_surv
+arma::vec gom_surv(arma::mat const& X, arma::vec const& t, arma::vec const& par);
+RcppExport SEXP _streg_gom_surv(SEXP XSEXP, SEXP tSEXP, SEXP parSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::mat const& >::type X(XSEXP);
+    Rcpp::traits::input_parameter< arma::vec const& >::type t(tSEXP);
+    Rcpp::traits::input_parameter< arma::vec const& >::type par(parSEXP);
+    rcpp_result_gen = Rcpp::wrap(gom_surv(X, t, par));
+    return rcpp_result_gen;
+END_RCPP
+}
 // wei_h
 arma::vec wei_h(arma::mat const& X, arma::vec const& t, arma::vec const& par);
 RcppExport SEXP _streg_wei_h(SEXP XSEXP, SEXP tSEXP, SEXP parSEXP) {
@@ -73,6 +99,8 @@ END_RCPP
 static const R_CallMethodDef CallEntries[] = {
     {"_streg_exp_h", (DL_FUNC) &_streg_exp_h, 2},
     {"_streg_exp_surv", (DL_FUNC) &_streg_exp_surv, 3},
+    {"_streg_gom_h", (DL_FUNC) &_streg_gom_h, 3},
+    {"_streg_gom_surv", (DL_FUNC) &_streg_gom_surv, 3},
     {"_streg_wei_h", (DL_FUNC) &_streg_wei_h, 3},
     {"_streg_wei_surv", (DL_FUNC) &_streg_wei_surv, 3},
     {"_streg_xb", (DL_FUNC) &_streg_xb, 2},
