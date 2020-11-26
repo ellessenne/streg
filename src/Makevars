@@ -4,6 +4,7 @@
 # that of the remainder of 'src'.
 # Therefore, other Makevars flags can be added here, e.g.,
 #
+PKG_LIBS = $(LAPACK_LIBS) $(BLAS_LIBS) $(FLIBS)
 # CXX_STD = CXX11
 #
 # Flags specifically for the TMB compilation can also be set
