@@ -4,7 +4,7 @@
 // [[Rcpp::export(.wei_h)]]
 arma::vec wei_h(arma::mat const &X, arma::vec const &t, arma::vec const &par) {
   Rcpp::checkUserInterrupt();
-  uint n = X.n_cols;
+  unsigned int n = X.n_cols;
   double ln_p = par(n); // indexing starts at zero here, hence this works
   double p = exp(ln_p);
   arma::vec beta = par.head(n);
@@ -16,7 +16,7 @@ arma::vec wei_h(arma::mat const &X, arma::vec const &t, arma::vec const &par) {
 // [[Rcpp::export(.wei_surv)]]
 arma::vec wei_surv(arma::mat const &X, arma::vec const &t, arma::vec const &par) {
   Rcpp::checkUserInterrupt();
-  uint n = X.n_cols;
+  unsigned int n = X.n_cols;
   double ln_p = par(n); // indexing starts at zero here, hence this works
   double p = exp(ln_p);
   arma::vec beta = par.head(n);
