@@ -10,7 +10,7 @@ Authors@R:
              email = "alessandro.gasparini@ki.se",
              comment = c(ORCID = "0000-0002-8319-7624")))
 Maintainer: Alessandro Gasparini <alessandro.gasparini@ki.se>
-URL: https://ellessenne.github.io/streg
+URL: https://ellessenne.github.io/streg/
 BugReports: https://github.com/ellessenne/streg/issues
 License: GPL (>= 3)
 Depends: 
