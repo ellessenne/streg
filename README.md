@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# Parametric Proportional Hazards Survival Analysis
+# Parametric Proportional Hazards Survival Models
 
 <!-- badges: start -->
 

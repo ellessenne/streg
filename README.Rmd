@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# Parametric Proportional Hazards Survival Analysis
+# Parametric Proportional Hazards Survival Models
 
 <!-- badges: start -->
 [![R build status](https://github.com/ellessenne/streg/workflows/R-CMD-check/badge.svg)](https://github.com/ellessenne/streg/actions)

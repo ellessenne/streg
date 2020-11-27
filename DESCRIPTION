@@ -2,14 +2,15 @@ Package: streg
 Version: 0.0.0.9000
 Title: Parametric Proportional Hazards Survival Models
 Description: Survival analysis parametric proportional hazards survival models, including
-  the exponential, Weibull, and Gompertz model.
+  the exponential, Weibull, and Gompertz model. Model-based predictions are supported as
+  well, e.g. for predicting the hazard or survival function.
 Authors@R: 
     c(person(given = "Alessandro",
              family = "Gasparini",
              role = c("aut", "cre"),
-             email = "alessandro.gasparini@ki.se",
+             email = "ellessenne@pm.me",
              comment = c(ORCID = "0000-0002-8319-7624")))
-Maintainer: Alessandro Gasparini <alessandro.gasparini@ki.se>
+Maintainer: Alessandro Gasparini <ellessenne@pm.me>
 URL: https://ellessenne.github.io/streg/
 BugReports: https://github.com/ellessenne/streg/issues
 License: GPL (>= 3)

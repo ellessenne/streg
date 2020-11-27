@@ -9,12 +9,13 @@
 Survival analysis with parametric models.
 
 Survival analysis parametric proportional hazards survival models, including
-  the exponential, Weibull, and Gompertz model.
+  the exponential, Weibull, and Gompertz model. Model-based predictions are supported as
+  well, e.g. for predicting the hazard or survival function.
 }
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://ellessenne.github.io/streg}
+  \item \url{https://ellessenne.github.io/streg/}
   \item Report bugs at \url{https://github.com/ellessenne/streg/issues}
 }
 
@@ -22,7 +23,7 @@ Useful links:
 \author{
 Alessandro Gasparini (alessandro.gasparini@ki.se)
 
-\strong{Maintainer}: Alessandro Gasparini \email{alessandro.gasparini@ki.se} (\href{https://orcid.org/0000-0002-8319-7624}{ORCID})
+\strong{Maintainer}: Alessandro Gasparini \email{ellessenne@pm.me} (\href{https://orcid.org/0000-0002-8319-7624}{ORCID})
 
 }
 \keyword{internal}
