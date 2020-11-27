@@ -1,14 +1,12 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# Parametric Survival Analysis
+# Parametric Proportional Hazards Survival Analysis
 
 <!-- badges: start -->
 
-[![Travis build
-status](https://travis-ci.org/ellessenne/streg.svg?branch=master)](https://travis-ci.org/ellessenne/streg)
-[![AppVeyor build
-status](https://ci.appveyor.com/api/projects/status/github/ellessenne/streg?branch=master&svg=true)](https://ci.appveyor.com/project/ellessenne/streg)
+[![R build
+status](https://github.com/ellessenne/streg/workflows/R-CMD-check/badge.svg)](https://github.com/ellessenne/streg/actions)
 [![Codecov test
 coverage](https://codecov.io/gh/ellessenne/streg/branch/master/graph/badge.svg)](https://codecov.io/gh/ellessenne/streg?branch=master)
 ![Lifecycle:
@@ -16,7 +14,7 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)
 <!-- badges: end -->
 
 > This package is in early development, and not ready for daily use.
-> However, if you have any early feedback please do get in touch\!
+> However, if you have any early feedback please do get in touch!
 
 ## Installation
 

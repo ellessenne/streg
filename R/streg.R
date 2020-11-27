@@ -1,79 +1,68 @@
 #' @export
-streg <- function(formula, data, distribution = "exponential", method = "L-BFGS-B", x = FALSE, y = FALSE, use.numDeriv = FALSE, init = NULL, optim.control = list()) {
+streg <- function(formula, data, distribution = "exponential", x = FALSE, y = FALSE, init = NULL, control = list()) {
+  # Extract call
+  cl <- match.call()
   # Match distribution
-  distribution <- match.arg(distribution, choices = c("exponential", "weibull", "gompertz", "invweibull", "lognormal"))
+  distribution <- match.arg(distribution, choices = c("exponential", "weibull", "gompertz"))
   # Process Surv component
-  S <- eval(expr = formula[[2]], envir = data)
+  S <- .process_streg_formula(formula = formula, data = data, which = "y")
   start <- S[, which(grepl("^time|^start", colnames(S))), drop = FALSE]
   status <- S[, which(grepl("^status", colnames(S))), drop = FALSE]
   # Create model matrix
-  .data <- stats::model.matrix(formula[-2], data = data)
-  # Pick correct likelihood function
-  ll <- switch(distribution,
-    "exponential" = exponential_ll,
-    "weibull" = weibull_ll,
-    "gompertz" = gompertz_ll,
-    "invweibull" = invweibull_ll,
-    "lognormal" = lognormal_ll
-  )
+  X <- .process_streg_formula(formula = formula, data = data, which = "x")
   # Process starting values
   if (is.null(init)) {
-    init <- rep(.Machine$double.eps, ncol(.data) + as.numeric(distribution != "exponential"))
+    # Fit the empty model here to improve starting values, if not provided with starting values
+    empty_formula <- stats::update(formula, ~ -.)
+    empty_X <- stats::model.matrix(empty_formula[-2], data = data)
+    init <- rep(1, ncol(empty_X) + as.numeric(distribution != "exponential"))
+    f <- switch(distribution,
+      "exponential" = TMB::MakeADFun(data = list(model = "ll_exp", data = empty_X, time = start, status = status), parameters = list(beta = init), silent = TRUE, DLL = "streg_TMBExports"),
+      "weibull" = TMB::MakeADFun(data = list(model = "ll_wei", data = empty_X, time = start, status = status), parameters = list(beta = init[-length(init)], logp = init[length(init)]), silent = TRUE, DLL = "streg_TMBExports"),
+      "gompertz" = TMB::MakeADFun(data = list(model = "ll_gom", data = empty_X, time = start, status = status), parameters = list(beta = init[-length(init)], gamma = init[length(init)]), silent = TRUE, DLL = "streg_TMBExports")
+    )
+    # Fit
+    empty_fit <- stats::nlminb(start = f$par, objective = f$fn, gradient = f$gr, hessian = f$he)
+    init <- rep(0, ncol(X) + as.numeric(distribution != "exponential"))
+    init[1] <- empty_fit$par[1]
+    if (length(empty_fit$par) > 1) init[length(init)] <- empty_fit$par[2]
   }
   names(init) <- switch(distribution,
-    "exponential" = colnames(.data),
-    "weibull" = c(colnames(.data), "ln_p"),
-    "gompertz" = c(colnames(.data), "ln_gamma"),
-    "invweibull" = c(colnames(.data), "ln_p"),
-    "lognormal" = c(colnames(.data), "ln_sigma")
+    "exponential" = colnames(X),
+    "weibull" = c(colnames(X), "ln_p"),
+    "gompertz" = c(colnames(X), "gamma"),
+  )
+  # Pick correct likelihood function
+  f <- switch(distribution,
+    "exponential" = TMB::MakeADFun(data = list(model = "ll_exp", data = X, time = start, status = status), parameters = list(beta = init), silent = TRUE, DLL = "streg_TMBExports"),
+    "weibull" = TMB::MakeADFun(data = list(model = "ll_wei", data = X, time = start, status = status), parameters = list(beta = init[-length(init)], logp = init[length(init)]), silent = TRUE, DLL = "streg_TMBExports"),
+    "gompertz" = TMB::MakeADFun(data = list(model = "ll_gom", data = X, time = start, status = status), parameters = list(beta = init[-length(init)], gamma = init[length(init)]), silent = TRUE, DLL = "streg_TMBExports")
   )
   # Fit
-  model.fit <- stats::optim(par = init, fn = ll, data = .data, time = start, status = status, method = method, hessian = !use.numDeriv, control = optim.control)
+  model.fit <- stats::nlminb(start = f$par, objective = f$fn, gradient = f$gr, hessian = f$he)
   # Hessian
-  if (use.numDeriv) {
-    model.fit$hessian <- numDeriv::hessian(func = ll, x = model.fit$par, data = .data, S = S)
-  }
+  model.fit$hessian <- f$he(x = model.fit$par)
+  # Fix names of Hessian matrix
+  names(model.fit$par) <- names(init)
+  colnames(model.fit$hessian) <- names(init)
+  rownames(model.fit$hessian) <- names(init)
+
   # Create object to output
   out <- list()
   out$coefficients <- model.fit$par
   out$vcov <- solve(model.fit$hessian)
   # Add sum(log(t)) of uncensored observations to log-likelihood
-  out$loglik <- -model.fit$value
-  out$n <- nrow(.data)
-  out$nevent <- sum(S[, 2])
-  out$time.at.risk <- sum(S[, 1])
+  out$loglik <- -model.fit$objective
+  out$n <- nrow(X)
+  out$n.events <- sum(status)
+  out$time.at.risk <- sum(start)
   out$distribution <- distribution
   out$convergence <- model.fit$convergence
   out$formula <- formula
+  out$time.range <- range(start)
   if (x) out$x <- data
   if (y) out$y <- S
+  out$call <- cl
   # Return an object of class streg
   structure(out, class = "streg")
-}
-
-#' @title Print \code{streg} Fits
-#' @description Print the coefficients from a \code{streg} fit.
-#'
-#' @param x An object of class \code{streg}.
-#' @param digits The number of significant digits to use when printing.
-#' @param ... Not used.
-#'
-#' @export
-print.streg <- function(x, digits = max(3L, getOption("digits") - 3L), ...) {
-  if (x$distribution == "invweibull") {
-    ddd <- "Inverse Weibull"
-  } else if (x$distribution == "lognormal") {
-    ddd <- "log-Normal"
-  } else {
-    ddd <- tools::toTitleCase(x$distribution)
-  }
-  cat(ddd, "regression -- log-relative hazard form\n\n")
-  if (length(stats::coef(x))) {
-    cat("Coefficients:\n")
-    print.default(format(stats::coef(x), digits = digits), print.gap = 2L, quote = FALSE)
-  } else {
-    cat("No coefficients\n")
-  }
-  cat("\n")
-  invisible(x)
 }

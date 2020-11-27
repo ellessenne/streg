@@ -1,7 +1,8 @@
 Package: streg
 Version: 0.0.0.9000
-Title: Parametric Survival Analysis
-Description: Survival analysis with parametric models.
+Title: Parametric Proportional Hazards Survival Models
+Description: Survival analysis parametric proportional hazards survival models, including
+  the exponential, Weibull, and Gompertz model.
 Authors@R: 
     c(person(given = "Alessandro",
              family = "Gasparini",
@@ -9,21 +10,27 @@ Authors@R:
              email = "alessandro.gasparini@ki.se",
              comment = c(ORCID = "0000-0002-8319-7624")))
 Maintainer: Alessandro Gasparini <alessandro.gasparini@ki.se>
-URL: https://ellessenne.github.io/streg
+URL: https://ellessenne.github.io/streg/
 BugReports: https://github.com/ellessenne/streg/issues
 License: GPL (>= 3)
 Depends: 
   R (>= 2.10),
   survival
 Imports:
-  numDeriv,
-  stats
+  Rcpp,
+  rstpm2,
+  stats,
+  TMB (>= 1.7.18)
 Suggests:
   covr,
   knitr,
   testthat (>= 2.1.0)
+LinkingTo:
+  Rcpp,
+  RcppArmadillo,
+  TMB
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 Encoding: UTF-8
 LazyData: true
 ByteCompile: true

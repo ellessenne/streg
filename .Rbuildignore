@@ -11,3 +11,5 @@
 ^pkgdown$
 ^data-raw/predict-stata\.dta$
 ^data-raw/predict-stata\.do$
+^Makefile$
+^\.github$
