@@ -1,4 +1,7 @@
-#' Predict Method for Parametric Proportional Hazards Survival Models
+#' @title Predict Method for Parametric Proportional Hazards Survival Models
+#'
+#' @description Obtain model-based predictions from a parametric proportional hazards survival model fitted by [streg()].
+#'
 #' @param object A fitted [streg()] object.
 #' @param newdata Optionally, a data frame in which to look for variables with which to predict.
 #' If `NULL` (the default), predictions will be computed for the data used to fit the model.

@@ -1,6 +1,7 @@
-#' @title Parametric Survival Analysis
+#' @title Parametric Proportional Hazards Survival Models
 #'
-#' @description Survival analysis with parametric models.
+#' @description Survival analysis parametric proportional hazards survival models, including the exponential, Weibull, and Gompertz model.
+#' Model-based predictions are supported as well, e.g. for predicting the hazard or survival function.
 #'
 #' @name streg-package
 #' @docType package

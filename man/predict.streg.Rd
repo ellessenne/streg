@@ -24,7 +24,7 @@ If \code{se.fit = FALSE}, a vector with the required predictions.
 If \code{se.fit = TRUE} a \code{data.frame} is returned with a column for the predictions (named \code{fit}) and a column for the fitted standard errors (named \code{se.fit}).
 }
 \description{
-Predict Method for Parametric Proportional Hazards Survival Models
+Obtain model-based predictions from a parametric proportional hazards survival model fitted by \code{\link[=streg]{streg()}}.
 }
 \details{
 If \code{newdata} is omitted the predictions are based on the data used for the fit.
