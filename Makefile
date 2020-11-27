@@ -1,7 +1,7 @@
 .PHONY: datasets docs checks
 
 datasets:
-	@R --quiet -f "data-raw/cancer.R"
+	@R --quiet -f "data-raw/cancer2.R"
 	@R --quiet -f "data-raw/hip.R"
 	@R --quiet -f "data-raw/kva.R"
 

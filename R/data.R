@@ -19,8 +19,8 @@
 #' * `age` Age of a patient at baseline.
 #' @references http://www.stata-press.com/data/r16/cancer.dta
 #' @examples
-#' data("cancer", package = "streg")
-"cancer"
+#' data("cancer2", package = "streg")
+"cancer2"
 
 #' @title Hip Fracture Study
 #' @description Hip fracture study data, imported from Stata 16.
