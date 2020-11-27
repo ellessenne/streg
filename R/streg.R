@@ -1,4 +1,53 @@
+#' @title Fitting Parametric Proportional Hazards Survival Models
+#'
+#' @description [streg()] is used to fit parametric proportional hazards survival models.
+#'
+#' @param formula A formula describing the model to be fitted.
+#' The left-hand-side of the formula must be a [survival::Surv()] object, and (at the moment) only right censoring is supported.
+#' @param data A data frame containing the variables in the model (as described by the model formula).
+#' @param distribution A character string naming the distribution to be assumed for the baseline hazard function.
+#' Possible values are `"exponential"`, `"weibull"`, and `"gompertz"` for exponential, Weibull, and Gompertz parametric survival regression models, respectively.
+#' See 'Details' for more informations on each.
+#' @param x Logical value indicating whether the model matrix used in the fitting process should be returned as components of the fitted object.
+#' @param y Logical value indicating whether the response vector (the [survival::Surv()] object) used in the fitting process should be returned as components of the fitted object.
+#' @param init An optional vector of starting values for the fitting process.
+#' If `NULL` (the default), starting values will be obtained by (1) fitting the empty model for the parameters related to the distribution and (2) assuming all other coefficients start from a value of zero.
+#' @param control A list of parameters for controlling the fitting process, which are passed to [stats::nlminb()].
+#'
+#' @details A general parametric proportional hazards survival model is defined as
+#' \deqn{
+#'  h(t | X, \theta, \beta) = h_0(t | \theta) \exp(X \beta)
+#' }
+#' where \eqn{X} represents model covariates, \eqn{\theta} represents any ancillary parameter, and \eqn{\beta} represents regression coefficients; \eqn{h_0(\cdot)} is the baseline hazard function.
+#'
+#' The exponential model assumes the following baseline hazard function:
+#' \deqn{
+#'  h_0(t | \theta) = \lambda
+#' }
+#' In practice, \eqn{\lambda} is incorporated in the linear predictor and modelled on the log-scale (and reported as the `(Intercept)` of the model).
+#'
+#' The Weibull model assumes the following baseline hazard function:
+#' \deqn{
+#'  h_0(t | \theta) = p \lambda t^{p - 1}
+#' }
+#' \eqn{\lambda} is incorporated in the linear predictor and modelled on the log-scale (and reported as the `(Intercept)` of the model); \eqn{p} is also modelled on the log-scale and reported as `ln_p`.
+#'
+#' Finally, the Gompertz model assumes the following baseline hazard function:
+#' \deqn{
+#'  h_0(t | \theta) = \lambda \exp(\gamma t)
+#' }
+#' \eqn{\lambda} is incorporated in the linear predictor and modelled on the log-scale (and reported as the `(Intercept)` of the model), \eqn{\gamma} is reported as `gamma` and not constrained to be strictly positive, as in Stata.
+#'
+#' @return An object of class `streg`.
+#'
 #' @export
+#'
+#' @examples
+#'
+#' library(streg)
+#' data("kva")
+#' fit <- streg(Surv(failtime, event) ~ load + bearings, data = kva, distribution = "exp", x = TRUE)
+#' fit
 streg <- function(formula, data, distribution = "exponential", x = FALSE, y = FALSE, init = NULL, control = list()) {
   # Extract call
   cl <- match.call()

@@ -10,14 +10,15 @@
 #' The default `"xb"` is to return the linear predictor.
 #' Other possible predictions are the hazard function (`type = "hazard"`) and the survival function (`type = "survival"`).
 #' @param se.fit Logical switch indicating if standard errors are required.
+#' @param ... Not used.
 #'
 #' @details If `newdata` is omitted the predictions are based on the data used for the fit.
 #'
 #' @return If `se.fit = FALSE`, a vector with the required predictions.
+#'
 #' If `se.fit = TRUE` a `data.frame` is returned with a column for the predictions (named `fit`) and a column for the fitted standard errors (named `se.fit`).
 #'
-#' @note Standard errors are estimated using the numerical delta method, as implemented in [rstpm2::predictnl()].
-#' This is equivalent (in principle) to Stata's `predictnl` command.
+#' @note Standard errors are estimated using the numerical delta method, as implemented in [rstpm2::predictnl()] --- which is equivalent, in principle --- to Stata's `predictnl` command.
 #'
 #' @importFrom stats predict
 #'
@@ -41,7 +42,6 @@
 #' nd <- data.frame(failtime = 30, event = 1, load = 10, bearings = 3)
 #' predict(fit, newdata = nd, type = "surv")
 #' predict(fit, newdata = nd, type = "surv", se.fit = TRUE)
-#'
 predict.streg <- function(object, newdata = NULL, type = "xb", se.fit = FALSE, ...) {
   # Process type of prediction to obtain
   type <- match.arg(arg = type, choices = c("xb", "hazard", "surv"))

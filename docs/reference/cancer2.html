@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Parametric Survival Models — is.streg • streg</title>
+<title>Patient Survival in Drug Trial — cancer2 • streg</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Parametric Survival Models — is.streg" />
-<meta property="og:description" content="Reports whether x is an object of class streg or summary.streg." />
+<meta property="og:title" content="Patient Survival in Drug Trial — cancer2" />
+<meta property="og:description" content="Patient survival in drug trial data, imported from Stata 16." />
 
 
 
@@ -108,29 +108,34 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Parametric Survival Models</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ellessenne/streg/blob/master/R/S3-methods.R'><code>R/S3-methods.R</code></a></small>
-    <div class="hidden name"><code>is.streg.Rd</code></div>
+    <h1>Patient Survival in Drug Trial</h1>
+    <small class="dont-index">Source: <a href='https://github.com/ellessenne/streg/blob/master/R/data.R'><code>R/data.R</code></a></small>
+    <div class="hidden name"><code>cancer2.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Reports whether <code>x</code> is an object of class <code>streg</code> or <code>summary.streg</code>.</p>
+    <p>Patient survival in drug trial data, imported from Stata 16.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>is.streg</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
-
-<span class='fu'>is.summary.streg</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span></pre>
-
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>x</th>
-      <td><p>An object to test.</p></td>
-    </tr>
-    </table>
+    <pre class="usage"><span class='va'>cancer2</span></pre>
 
 
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
+
+    <p>A data frame with 48 rows and 4 variables:</p><ul>
+<li><p><code>studytime</code> Months to death or end of follow-up;</p></li>
+<li><p><code>died</code> Event indicator variable, <code>died = 1</code> if a patient died;</p></li>
+<li><p><code>drug</code> Drug type, with <code>drug = 1</code> being placebo;</p></li>
+<li><p><code>age</code> Age of a patient at baseline.</p></li>
+</ul>
+
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+
+    <p>http://www.stata-press.com/data/r16/cancer.dta</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"cancer2"</span>, package <span class='op'>=</span> <span class='st'>"streg"</span><span class='op'>)</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

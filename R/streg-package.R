@@ -7,10 +7,10 @@
 #' @docType package
 #' @author Alessandro Gasparini (alessandro.gasparini@@ki.se)
 #' @import survival
-NULL
 
 #' @rawNamespace useDynLib(streg, .registration = TRUE); useDynLib(streg_TMBExports)
 #' @keywords internal
+#' @aliases streg-package
 "_PACKAGE"
 
 # The following block is used by usethis to automatically manage

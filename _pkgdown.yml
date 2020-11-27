@@ -1,3 +1,4 @@
+url: https://ellessenne.github.io/streg/
 destination: docs
 authors:
   Alessandro Gasparini:
@@ -5,3 +6,40 @@ authors:
 template:
   params:
     bootswatch: cosmo
+development:
+  mode: auto
+
+reference:
+- title: Estimation
+  description: >
+    The `streg` function is the main function of this package, which allows fitting parametric proportional hazards survival models.
+    Supported models are the exponential, the Weibull, and the Gompertz model.
+  contents:
+  - streg
+  - print.streg
+
+- title: Predictions
+  description: >
+    The `predict.streg` method has been implemented to obtain predictions from a fitted `streg` model.
+    Currently you can obtain the linear predictor, the hazard function, and the survival probability.
+    Out of sample predictions and prediction standard errors are supported out-of-the-box.
+  contents:
+  - predict.streg
+
+- title: Datasets
+  description: >
+    `streg` comes with some bundled datasets:
+  contents:
+  - cancer2
+  - hip
+  - kva
+
+- title: Full documentation
+  description: >
+    The remaining functions bundled with the {streg} package are documented here:
+  contents:
+  - coef.streg
+  - vcov.streg
+  - logLik.streg
+  - is.streg
+  - nobs.streg

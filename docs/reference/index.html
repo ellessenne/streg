@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">streg</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.0.9000</span>
       </span>
     </div>
 
@@ -121,8 +121,8 @@
     <tbody>
       <tr>
         <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
+          <h2 id="section-estimation" class="hasAnchor"><a href="#section-estimation" class="anchor"></a>Estimation</h2>
+          <p class="section-desc"><p>The <code>streg</code> function is the main function of this package, which allows fitting parametric proportional hazards survival models. Supported models are the exponential, the Weibull, and the Gompertz model.</p></p>
         </th>
       </tr>
       
@@ -133,15 +133,53 @@
       <tr>
         
         <td>
-          <p><code><a href="cancer.html">cancer</a></code> </p>
+          <p><code><a href="streg.html">streg()</a></code> </p>
         </td>
-        <td><p>Patient Survival in Drug Trial</p></td>
+        <td><p>Fitting Parametric Proportional Hazards Survival Models</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="coef.streg.html">coef(<i>&lt;streg&gt;</i>)</a></code> <code><a href="coef.streg.html">`coef&lt;-`(<i>&lt;streg&gt;</i>)</a></code> </p>
+          <p><code><a href="print.streg.html">print(<i>&lt;streg&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Extract Model Coefficients</p></td>
+        <td><p>Print <code>streg</code> Fits</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-predictions" class="hasAnchor"><a href="#section-predictions" class="anchor"></a>Predictions</h2>
+          <p class="section-desc"><p>The <code>predict.streg</code> method has been implemented to obtain predictions from a fitted <code>streg</code> model. Currently you can obtain the linear predictor, the hazard function, and the survival probability. Out of sample predictions and prediction standard errors are supported out-of-the-box.</p></p>
+        </th>
+      </tr>
+      
+      
+    </tbody><tbody>
+      
+      
+      <tr>
+        
+        <td>
+          <p><code><a href="predict.streg.html">predict(<i>&lt;streg&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Predict Method for Parametric Proportional Hazards Survival Models</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-datasets" class="hasAnchor"><a href="#section-datasets" class="anchor"></a>Datasets</h2>
+          <p class="section-desc"><p><code>streg</code> comes with some bundled datasets:</p></p>
+        </th>
+      </tr>
+      
+      
+    </tbody><tbody>
+      
+      
+      <tr>
+        
+        <td>
+          <p><code><a href="cancer2.html">cancer2</a></code> </p>
+        </td>
+        <td><p>Patient Survival in Drug Trial</p></td>
       </tr><tr>
         
         <td>
@@ -151,15 +189,34 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="is.streg.html">is.streg()</a></code> <code><a href="is.streg.html">is.summary.streg()</a></code> </p>
-        </td>
-        <td><p>Parametric Survival Models</p></td>
-      </tr><tr>
-        
-        <td>
           <p><code><a href="kva.html">kva</a></code> </p>
         </td>
         <td><p>Generator Experiment</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-full-documentation" class="hasAnchor"><a href="#section-full-documentation" class="anchor"></a>Full documentation</h2>
+          <p class="section-desc"><p>The remaining functions bundled with the {streg} package are documented here:</p></p>
+        </th>
+      </tr>
+      
+      
+    </tbody><tbody>
+      
+      
+      <tr>
+        
+        <td>
+          <p><code><a href="coef.streg.html">coef(<i>&lt;streg&gt;</i>)</a></code> <code><a href="coef.streg.html">`coef&lt;-`(<i>&lt;streg&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Extract Model Coefficients</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="vcov.streg.html">vcov(<i>&lt;streg&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Calculate Variance-Covariance Matrix for a Fitted Model Object</p></td>
       </tr><tr>
         
         <td>
@@ -169,21 +226,15 @@
       </tr><tr>
         
         <td>
+          <p><code><a href="is.streg.html">is.streg()</a></code> <code><a href="is.streg.html">is.summary.streg()</a></code> </p>
+        </td>
+        <td><p>Parametric Survival Models</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="nobs.streg.html">nobs(<i>&lt;streg&gt;</i>)</a></code> </p>
         </td>
         <td><p>Extract the Number of Observations from a Fit.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="print.streg.html">print(<i>&lt;streg&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Print <code>streg</code> Fits</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="vcov.streg.html">vcov(<i>&lt;streg&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Calculate Variance-Covariance Matrix for a Fitted Model Object</p></td>
       </tr>
     </tbody>
     </table>

@@ -3,15 +3,11 @@
 \docType{package}
 \name{streg-package}
 \alias{streg-package}
-\alias{streg}
+\alias{_PACKAGE}
 \title{Parametric Proportional Hazards Survival Models}
 \description{
 Survival analysis parametric proportional hazards survival models, including the exponential, Weibull, and Gompertz model.
 Model-based predictions are supported as well, e.g. for predicting the hazard or survival function.
-
-Survival analysis parametric proportional hazards survival models, including
-  the exponential, Weibull, and Gompertz model. Model-based predictions are supported as
-  well, e.g. for predicting the hazard or survival function.
 }
 \seealso{
 Useful links:
@@ -23,8 +19,5 @@ Useful links:
 }
 \author{
 Alessandro Gasparini (alessandro.gasparini@ki.se)
-
-\strong{Maintainer}: Alessandro Gasparini \email{ellessenne@pm.me} (\href{https://orcid.org/0000-0002-8319-7624}{ORCID})
-
 }
 \keyword{internal}

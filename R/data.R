@@ -6,6 +6,7 @@
 #' * `load` Overload (in KVA);
 #' * `bearings` Binary variable for _Has new bearings?_.
 #' @references http://www.stata-press.com/data/r16/kva.dta
+#' @keywords datasets
 #' @examples
 #' data("kva", package = "streg")
 "kva"
@@ -18,6 +19,7 @@
 #' * `drug` Drug type, with `drug = 1` being placebo;
 #' * `age` Age of a patient at baseline.
 #' @references http://www.stata-press.com/data/r16/cancer.dta
+#' @keywords datasets
 #' @examples
 #' data("cancer2", package = "streg")
 "cancer2"
@@ -34,6 +36,7 @@
 #' * `calcium` Blood calcium level;
 #' * `male` 1 if male.
 #' @references http://www.stata-press.com/data/r16/hip3.dta
+#' @keywords datasets
 #' @examples
 #' data("hip", package = "streg")
 "hip"
