@@ -2,29 +2,30 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 .exp_h <- function(X, par) {
-  .Call(`_streg_exp_h`, X, par)
+    .Call(`_streg_exp_h`, X, par)
 }
 
 .exp_surv <- function(X, t, par) {
-  .Call(`_streg_exp_surv`, X, t, par)
+    .Call(`_streg_exp_surv`, X, t, par)
 }
 
 .gom_h <- function(X, t, par) {
-  .Call(`_streg_gom_h`, X, t, par)
+    .Call(`_streg_gom_h`, X, t, par)
 }
 
 .gom_surv <- function(X, t, par) {
-  .Call(`_streg_gom_surv`, X, t, par)
+    .Call(`_streg_gom_surv`, X, t, par)
 }
 
 .wei_h <- function(X, t, par) {
-  .Call(`_streg_wei_h`, X, t, par)
+    .Call(`_streg_wei_h`, X, t, par)
 }
 
 .wei_surv <- function(X, t, par) {
-  .Call(`_streg_wei_surv`, X, t, par)
+    .Call(`_streg_wei_surv`, X, t, par)
 }
 
 .xb <- function(X, par) {
-  .Call(`_streg_xb`, X, par)
+    .Call(`_streg_xb`, X, par)
 }
+

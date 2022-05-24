@@ -6,7 +6,7 @@
 #' @name streg-package
 #' @docType package
 #' @author Alessandro Gasparini (alessandro.gasparini@@ki.se)
-#' @import survival
+#' @import Rcpp survival
 
 #' @rawNamespace useDynLib(streg, .registration = TRUE); useDynLib(streg_TMBExports)
 #' @keywords internal
