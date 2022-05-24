@@ -4,8 +4,7 @@ authors:
   Alessandro Gasparini:
     href: https://www.ellessenne.xyz
 template:
-  params:
-    bootswatch: cosmo
+  bootstrap: 5
 development:
   mode: auto
 
