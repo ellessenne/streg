@@ -5,7 +5,7 @@
 
 <!-- badges: start -->
 
-[![R-CMD-check](https://github.com/ellessenne/streg/workflows/R-CMD-check/badge.svg)](https://github.com/ellessenne/streg/actions)
+[![R-CMD-check](https://github.com/ellessenne/streg/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/ellessenne/streg/actions/workflows/R-CMD-check.yaml)
 [![Codecov test
 coverage](https://codecov.io/gh/ellessenne/streg/branch/master/graph/badge.svg)](https://codecov.io/gh/ellessenne/streg?branch=master)
 ![Lifecycle:

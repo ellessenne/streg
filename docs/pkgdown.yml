@@ -1,8 +1,8 @@
-pandoc: '2.18'
-pkgdown: 2.0.3
+pandoc: 2.19.2
+pkgdown: 2.0.6
 pkgdown_sha: ~
 articles: {}
-last_built: 2022-05-24T09:42Z
+last_built: 2022-09-14T09:58Z
 urls:
   reference: https://ellessenne.github.io/streg/reference
   article: https://ellessenne.github.io/streg/articles
